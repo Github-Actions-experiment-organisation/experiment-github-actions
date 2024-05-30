@@ -1,5 +1,9 @@
 name: Working Dirs & Shells
 on: [push]
+defaults:
+    run:
+        shell: bash
+        # working-directory: <some directory that exists>
 jobs:
     display-wd-info:
         runs-on: ubuntu-latest
@@ -11,8 +15,14 @@ jobs:
                 echo $GITHUB_SHA
                 echo $GITHUB_REPOSITORY
                 echo $GITHUB_WORKSPACE
+            - name: Change working directory
+              working-directory: /home/runner/
+              run: pwd
     display-wd-info-macOS:
         runs-on: macOS-latest
+        defaults:
+            run:
+                shell: bash   #This one is to demonstrate that we can override the workflow level shell configuration at the job level, but that's redundant for macOS since we use bash anyway
         steps:
             - name: Display working directory and list files
               run: |
