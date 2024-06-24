@@ -2,7 +2,13 @@ name: Simple Action
 on: [push]
 
 jobs:
-    simple-action:
-        runs-on: macOS-latest
-        steps:
-            
+  simple-action:
+    runs-on: macOS-latest
+    steps:
+      - name: Simple JS Action
+        id: greet
+        uses: actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b
+        with:
+          who-to-greet: Yash
+      - name: Log Greeting Time
+        run: echo "${{ steps.greet.outputs.time }}"
