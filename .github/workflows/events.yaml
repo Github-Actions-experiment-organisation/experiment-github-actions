@@ -1,8 +1,13 @@
 name: Repository Events
-on: [push, pull_request, issues]
+on:
+    push:
+    pull_request: 
+        types: [opened, assigned, synchronize, reopened]
+    issues:
+        types: [opened]
 
 jobs:
-    checkout-test:
+    checkout-test: #Github_REF is the main branch here since we push to main branch
         runs-on: macOS-latest
         steps:
             - run: |
