@@ -7,4 +7,4 @@ jobs:
     echo-string:
         runs-on: macOS-latest
         steps:
-            - run: echo "I was triggered because `Repsitory Events` was completed"
+            - run: echo "I was triggered because `Repository Events` was completed"
