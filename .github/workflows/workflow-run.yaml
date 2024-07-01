@@ -1,0 +1,10 @@
+name: Workflow Run
+on: 
+    workflow_run:
+        workflows: [Repsitory Events]
+        types: [completed]
+jobs:
+    echo-string:
+        runs-on: MacOS-latest
+        steps:
+            - run: echo "I was triggered because `Repsitory Events` was completed"
