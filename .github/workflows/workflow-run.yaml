@@ -5,6 +5,6 @@ on:
         types: [completed]
 jobs:
     echo-string:
-        runs-on: MacOS-latest
+        runs-on: macOS-latest
         steps:
             - run: echo "I was triggered because `Repsitory Events` was completed"
