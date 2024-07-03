@@ -3,6 +3,8 @@ on:
     workflow_run:
         workflows: [Repository Events]
         types: [completed]
+        branches:
+            - main  # This implies that we only want workflow_run here to trigger once the Repository Events workflow is completed on the main branch
 jobs:
     echo-string:
         runs-on: macOS-latest
