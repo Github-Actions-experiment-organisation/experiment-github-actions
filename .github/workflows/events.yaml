@@ -1,8 +1,30 @@
 name: Repository Events
 on:
     push:
+        branches:
+            - main
+            - "feature/*" # matches feature/someFeature, does not match feature/something/something_else
+            - "feature/**" # matches feature/someFeature, feature/something_else, and feature/someFeature/something_else
+            - "!feature/testPullRequestRepsitoryEvent" # makes sure we don't run the workflow for this branch
+            # same as branches-ignore but since we can't use branches and branches-ignore together we do it this way.
+            # Order matters here too
+        tags:
+            - "v1.*" # matches v1.1, v1.1.2
+            - "!v1.1.1"
+        paths:
+            - "**.js" # only javascript files included to run this workflow 
+        # branches-ignore:
+        #     - develop
+        # paths-ignore:
+        #     - some path # Cannot use paths and paths-ignore together
     pull_request: 
         types: [opened, assigned, synchronize, reopened]
+        branches:
+            - main
+        paths:
+            - "**.js"
+            # So this filtering here with branches and paths means ->
+            # This workflow will only target pull requests made to the main branch and only when any javaScript file is changed
     issues:
         types: [opened]
 
