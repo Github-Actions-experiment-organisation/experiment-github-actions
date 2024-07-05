@@ -6,4 +6,4 @@ jobs:
     echo-a-string:
        runs-on: macOS-latest
        steps:
-        - run: echo "${{ github.event.client_payload.env }}"
+        - run: echo "${{ github.event.client_payload.environment }}"
