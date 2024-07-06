@@ -1,0 +1,15 @@
+name: Stale pull requests and issues
+on:
+    schedule:
+        - cron: "0 12 * * *" #First one represents minute, second one hours, third one day of the month, fourth one month, and fifth one days of the week
+        - cron: "0/5 * * * *" # Just for testing, not a realistic scenario
+
+jobs:
+    stale:
+        runs-on: macOS-latest
+        steps:
+            - uses: actions/stale@v8
+              with:
+                stale-issue-message: "This is some message"
+                days-before-stale: 1
+                days-before-close: 5
