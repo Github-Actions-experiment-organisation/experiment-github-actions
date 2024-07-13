@@ -1,0 +1,29 @@
+name: Status Check Filters
+on: [push]
+
+jobs:
+    job-1:
+        runs-on: macOS-latest
+        steps:
+            - name: Step 1 of job-1
+              run: sleep 20
+            - name: Runs on failure
+              if: failure()
+              run: echo 'Runs only on failure'
+            - name: Runs on success
+            # This is default behaviour and therefore unnecessary
+              if: success()
+              run: echo 'Runs on success'
+            - name: Always runs
+            # if success() || failure() - if this is added here then the Always runs step runs despite whatever happens but doesn't run if the workflow run was cancelled. Without this the step will run even if we cancel the workflow run
+              if: always()
+              run: echo 'Always runs'
+            - name: Runs when cancelled
+              if: cancelled()
+              run: echo 'Runs on cancelled'
+    job-2:
+        runs-on: macOS-latest
+        needs: job-1
+        if: failure()
+        steps:
+            - run: echo 'Job 2'
