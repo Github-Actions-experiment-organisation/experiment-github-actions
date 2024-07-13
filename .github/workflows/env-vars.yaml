@@ -19,7 +19,7 @@ jobs:
                 WF_LEVEL_ENV: Overridden in step
               run: |
                echo '${{ env.STEP_LEVEL_ENV }}'
-               echo $STEP_LEVEL_ENV
+               echo $WF_LEVEL_ENV
                echo $JOB_LEVEL_ENV
         env: 
             JOB_LEVEL_ENV: Available to all steps in env-vars-context-job
