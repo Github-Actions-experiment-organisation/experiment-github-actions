@@ -7,6 +7,8 @@ env:
 jobs:
     env-vars-context:
         runs-on: macOS-latest
+        env: 
+            JOB_LEVEL_ENV: Available to all steps in env-vars-context-job
         if: github.ref == 'refs/heads/main'
         steps:
             - name: Log ENV VAR
@@ -15,8 +17,8 @@ jobs:
               run: echo '${{ github.ref }}'
             - name: Set Env var dynamically
               run: |
-                echo "NEW_ENV_VAR = $(date)" >> "$GITHUB_ENV"
-                echo "JOB_LEVEL_ENV = $RANDOM" >> "$GITHUB_ENV" 
+                echo "NEW_ENV_VAR=$(date)" >> "$GITHUB_ENV"
+                echo "JOB_LEVEL_ENV=$RANDOM" >> "$GITHUB_ENV" 
             - name: Log Custom ENV vars
               env:
                 STEP_LEVEL_ENV: Available only to the Log Custom ENV vars step
@@ -26,5 +28,3 @@ jobs:
                echo $WF_LEVEL_ENV
                echo $JOB_LEVEL_ENV
                echo $NEW_ENV_VAR
-        env: 
-            JOB_LEVEL_ENV: Available to all steps in env-vars-context-job
