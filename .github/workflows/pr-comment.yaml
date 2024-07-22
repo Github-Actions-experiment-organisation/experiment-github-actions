@@ -8,7 +8,7 @@ jobs:
     pr-comment:
         runs-on: macOS-latest
         permissions:
-            issues: write
+            pull-requests: write
         steps:
             - name: Comment on new PRs
               uses: actions/github-script@v6
