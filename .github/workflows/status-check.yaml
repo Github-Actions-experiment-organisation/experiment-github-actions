@@ -10,9 +10,12 @@ jobs:
             - name: Step 2 of job-1
               id: step-2
               run: exit 1
-            - name: Runs on failure
+            - name: Runs on failure for step 2
               if: failure() && steps.step-2.conclusion == 'failure'
               run: echo 'Step 2 has failed'
+            - name: Runs on failure in general
+              if: failure()
+              run: echo 'Failure'
             - name: Runs on success
             # This is default behaviour and therefore unnecessary
               if: success()
